@@ -8,7 +8,7 @@ module.exports = function(graph_api) {
     // Make sure this is a page subscription
     if (data.object == 'page'){
       for (let pageEntry of data.entry){
-        for (let messagingEvent of pageEntry.messaging){
+        for (let messagingEvent of pageEntry.messaging) {
           if (messagingEvent.message) { msgs.push(messagingEvent); }
           // if (messagingEvent.postback.payload === 'get_started') {
           //   graph_api._callSendAPI({
@@ -47,20 +47,7 @@ module.exports = function(graph_api) {
       message = {
         "get_started": {
           "payload": "FIRST"
-        },
-        "persistent_menu": [
-          {
-            "locale": "default",
-            "composer_input_disabled": false,
-            "call_to_actions": [
-              {
-              "type": "postback",
-              "title": "Persistent Menu Button",
-              "payload": "FIRST"
-              }
-            ]
-          }
-        ]
+        }
       };
     }
 
