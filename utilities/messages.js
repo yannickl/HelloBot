@@ -18,40 +18,40 @@ module.exports = function(graph_api){
   //Handle received message
   module._handleMessage = function(message) {
     let senderID = message.sender.id;
-    this._sendMessage(senderID, message);
+    this._sendMessage(senderID, JSON.stringify(message));
   }
 
   //Send message from the bot to the user
   module._sendMessage = function(recipientId, text) {
     var message = {
-      text: JSON.stringify(text),
+      text: text,
       metadata: 'DEVELOPER_DEFINED_METADATA'
     };
 
-    if (text.toLowerCase() == "hey") {
-      message.text = "Ho!";
-    }
+    // if (text.toLowerCase() == "hey") {
+    //   message.text = "Ho!";
+    // }
 
-    if (text.toLowerCase() == "start") {
-      message = {
-        "get_started": {
-          "payload": "FIRST"
-        },
-        "persistent_menu": [
-          {
-            "locale": "default",
-            "composer_input_disabled": false,
-            "call_to_actions": [
-              {
-              "type": "postback",
-              "title": "Persistent Menu Button",
-              "payload": "FIRST"
-              }
-            ]
-          }
-        ]
-      };
-    }
+    // if (text.toLowerCase() == "start") {
+    //   message = {
+    //     "get_started": {
+    //       "payload": "FIRST"
+    //     },
+    //     "persistent_menu": [
+    //       {
+    //         "locale": "default",
+    //         "composer_input_disabled": false,
+    //         "call_to_actions": [
+    //           {
+    //           "type": "postback",
+    //           "title": "Persistent Menu Button",
+    //           "payload": "FIRST"
+    //           }
+    //         ]
+    //       }
+    //     ]
+    //   };
+    // }
 
     let messageData = {
       recipient: {
