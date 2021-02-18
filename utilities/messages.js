@@ -24,7 +24,7 @@ module.exports = function(graph_api){
   //Send message from the bot to the user
   module._sendMessage = function(recipientId, text) {
     var message = {
-      text: text,
+      text: JSON.stringify(text),
       metadata: 'DEVELOPER_DEFINED_METADATA'
     };
 
