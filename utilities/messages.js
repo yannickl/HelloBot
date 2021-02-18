@@ -18,7 +18,7 @@ module.exports = function(graph_api){
   //Handle received message
   module._handleMessage = function(message) {
     let senderID = message.sender.id;
-    this._sendMessage(senderID, JSON.stringify(message));
+    this._sendMessage(senderID, message.message.text.toLowerCase());
   }
 
   //Send message from the bot to the user
@@ -28,9 +28,9 @@ module.exports = function(graph_api){
       metadata: 'DEVELOPER_DEFINED_METADATA'
     };
 
-    // if (text.toLowerCase() == "hey") {
-    //   message.text = "Ho!";
-    // }
+    if (text == "hey") {
+      message.text = "Ho!";
+    }
 
     // if (text.toLowerCase() == "start") {
     //   message = {
