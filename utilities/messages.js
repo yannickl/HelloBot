@@ -13,7 +13,7 @@ module.exports = function(graph_api) {
           if (messagingEvent.postback.payload === 'get_started') {
             graph_api._callSendAPI({
               recipient: {
-                id: event.sender.id
+                id: messagingEvent.sender.id
               },
               message: {
                 text: "Welcome"
