@@ -23,15 +23,39 @@ module.exports = function(graph_api){
 
   //Send message from the bot to the user
   module._sendMessage = function(recipientId, text) {
-    let messageData = {
-        recipient: {
-            id: recipientId
-        },
-        message: {
-            text: text,
-            metadata: 'DEVELOPER_DEFINED_METADATA'
-        }
+    var message = {
+      text: text,
+      metadata: 'DEVELOPER_DEFINED_METADATA'
     };
+
+    if (text == "start") {
+      message = {
+        "get_started": {
+          "payload": "FIRST"
+        },
+        "persistent_menu": [
+          {
+            "locale": "default",
+            "composer_input_disabled": false,
+            "call_to_actions": [
+              {
+              "type": "postback",
+              "title": "Persistent Menu Button",
+              "payload": "FIRST"
+              }
+            ]
+          }
+        ]
+      };
+    }
+
+    let messageData = {
+      recipient: {
+          id: recipientId
+      },
+      message: message
+    };
+
     graph_api._callSendAPI(messageData);
   }
 
