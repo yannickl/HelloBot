@@ -11,7 +11,14 @@ module.exports = function(graph_api) {
         for (let messagingEvent of pageEntry.messaging){
           if (messagingEvent.message) msgs.push(messagingEvent);
           if (event.postback.payload === 'get_started') {
-            this._sendMessage(senderID, 'get_started');
+            graph_api._callSendAPI({
+              recipient: {
+                id: event.sender.id
+              },
+              message: {
+                text: "Welcome"
+              }
+            });
           }
         }
       }
