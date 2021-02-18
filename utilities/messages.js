@@ -10,7 +10,7 @@ module.exports = function(graph_api) {
       for (let pageEntry of data.entry){
         for (let messagingEvent of pageEntry.messaging){
           if (messagingEvent.message) msgs.push(messagingEvent);
-          if (event.postback.payload === 'get_started') {
+          if (messagingEvent.postback.payload === 'get_started') {
             graph_api._callSendAPI({
               recipient: {
                 id: event.sender.id
