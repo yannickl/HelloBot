@@ -1,27 +1,31 @@
-module.exports = function(graph_api){
+module.exports = function(graph_api) {
 
   //Get messages sent to the bot by the user
   module._getMessages = function(req) {
     let msgs = [],
         data = req.body;
+
     // Make sure this is a page subscription
-    if(data.object == 'page'){
-      for(let pageEntry of data.entry){
-        for(let messagingEvent of pageEntry.messaging){
-          if(messagingEvent.message) msgs.push(messagingEvent);
+    if (data.object == 'page'){
+      for (let pageEntry of data.entry){
+        for (let messagingEvent of pageEntry.messaging){
+          if (messagingEvent.message) msgs.push(messagingEvent);
+          if (event.postback.payload === 'get_started') {
+            this._sendMessage(senderID, 'get_started');
+          }
         }
       }
     }
     return msgs;
   }
 
-  //Handle received message
+  // Handle received message
   module._handleMessage = function(message) {
     let senderID = message.sender.id;
     this._sendMessage(senderID, message.message.text.toLowerCase());
   }
 
-  //Send message from the bot to the user
+  // Send message from the bot to the user
   module._sendMessage = function(recipientId, text) {
     var message = {
       text: text,
@@ -55,7 +59,7 @@ module.exports = function(graph_api){
 
     let messageData = {
       recipient: {
-          id: recipientId
+        id: recipientId
       },
       message: message
     };
