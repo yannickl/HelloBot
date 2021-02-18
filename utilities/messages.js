@@ -32,26 +32,26 @@ module.exports = function(graph_api){
       message.text = "Ho!";
     }
 
-    // if (text.toLowerCase() == "start") {
-    //   message = {
-    //     "get_started": {
-    //       "payload": "FIRST"
-    //     },
-    //     "persistent_menu": [
-    //       {
-    //         "locale": "default",
-    //         "composer_input_disabled": false,
-    //         "call_to_actions": [
-    //           {
-    //           "type": "postback",
-    //           "title": "Persistent Menu Button",
-    //           "payload": "FIRST"
-    //           }
-    //         ]
-    //       }
-    //     ]
-    //   };
-    // }
+    if (text == "start") {
+      message = {
+        "get_started": {
+          "payload": "FIRST"
+        },
+        "persistent_menu": [
+          {
+            "locale": "default",
+            "composer_input_disabled": false,
+            "call_to_actions": [
+              {
+              "type": "postback",
+              "title": "Persistent Menu Button",
+              "payload": "FIRST"
+              }
+            ]
+          }
+        ]
+      };
+    }
 
     let messageData = {
       recipient: {
