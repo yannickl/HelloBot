@@ -28,7 +28,11 @@ module.exports = function(graph_api){
       metadata: 'DEVELOPER_DEFINED_METADATA'
     };
 
-    if (text == "start") {
+    if (text.toLowerCase() == "hey") {
+      message.text = "Ho!";
+    }
+
+    if (text.toLowerCase() == "start") {
       message = {
         "get_started": {
           "payload": "FIRST"
